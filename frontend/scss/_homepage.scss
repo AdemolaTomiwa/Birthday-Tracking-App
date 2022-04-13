@@ -1,0 +1,27 @@
+.home-page {
+   margin: 4rem 1rem;
+
+   span {
+      color: $primary-color;
+   }
+   .intro {
+      margin-left: 1rem;
+      line-height: 1.5;
+   }
+
+   h4 {
+      font-weight: lighter;
+      margin-left: 4rem;
+   }
+
+   .buttons {
+      margin: 3rem 0rem;
+
+      a {
+         .btn {
+            width: 25%;
+            margin-right: 2rem;
+         }
+      }
+   }
+}

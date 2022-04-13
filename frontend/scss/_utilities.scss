@@ -1,0 +1,62 @@
+img {
+   width: 100%;
+   height: 100%;
+}
+
+a {
+   color: $white-color;
+   text-decoration: none;
+}
+
+.container {
+   width: 80%;
+   margin: 0 auto;
+   max-width: 1224px;
+}
+
+@mixin easeOut {
+   transition: all ease-out 0.5s;
+}
+
+// Text
+h1 {
+   font-size: 5rem;
+}
+
+h2 {
+   font-size: 3rem;
+}
+
+h3 {
+   font-size: 2rem;
+}
+
+h4 {
+   font-size: 1.5rem;
+}
+
+h5 {
+   font-size: 1rem;
+}
+
+// Buttons
+.btn {
+   padding: 0.9rem 1rem;
+   font-size: 1rem;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   font-family: 'Montserrat Alternates', sans-serif;
+   font-weight: bold;
+   border-radius: 10px;
+
+   &-primary {
+      background-color: $primary-color;
+      color: $white-color;
+      @include easeOut();
+
+      &:hover {
+         background-color: darken($primary-color, 0.6);
+      }
+   }
+}
