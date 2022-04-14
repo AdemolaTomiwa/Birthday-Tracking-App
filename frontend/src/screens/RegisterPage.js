@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../actions/userActions';
+import { registerUser } from '../actions/userActions';
 import Loader from '../components/Loader';
 import { clearErrors } from '../actions/errorActions';
 
-const LoginPage = () => {
+const RegisterPage = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   const [showPassword, setshowPassword] = useState(false);
+   const [firstName, setFirstName] = useState('');
+   const [lastName, setLastName] = useState('');
    const [email, setEmail] = useState('');
+   const [birthday, setBirthday] = useState('');
    const [password, setPassword] = useState('');
+   const [showPassword, setshowPassword] = useState(false);
 
    // Password toggle handler
    const togglePassword = () => {
@@ -36,29 +39,57 @@ const LoginPage = () => {
       e.preventDefault();
 
       const user = {
+         firstName,
+         lastName,
+         birthday,
          email,
          password,
       };
 
-      dispatch(loginUser(user));
+      dispatch(registerUser(user));
    };
 
    return (
-      <div className="login-page">
+      <div className="register-page">
          <h5>Start for Free</h5>
          <h3>
-            Log into your account <span>.</span>
+            Create an account <span>.</span>
          </h3>
          <p>
-            Don't have an account?{' '}
-            <Link to="/register">
-               <span>Create an account</span>
+            Already a Member?{' '}
+            <Link to="/login">
+               <span>Log In</span>
             </Link>
          </p>
+
          {userLoading && <Loader />}
 
          <form onSubmit={onSubmit}>
             <div className="error-msg">{msg}</div>
+            <div className="group">
+               <div>
+                  <input
+                     type="text"
+                     autoComplete="off"
+                     name="firstName"
+                     placeholder="John"
+                     value={firstName}
+                     onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <i className="fas fa-address-book"></i>
+               </div>
+               <div>
+                  <input
+                     type="text"
+                     autoComplete="off"
+                     name="lastName"
+                     placeholder="Doe"
+                     value={lastName}
+                     onChange={(e) => setLastName(e.target.value)}
+                  />
+                  <i className="fas fa-address-book"></i>
+               </div>
+            </div>
             <div>
                <input
                   type="email"
@@ -69,6 +100,15 @@ const LoginPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                />
                <i className="fas fa-envelope"></i>
+            </div>
+            <div>
+               <input
+                  type="date"
+                  name="date"
+                  value={birthday}
+                  onChange={(e) => setBirthday(e.target.value)}
+               />
+               <i className="fas fa-calendar-alt"></i>
             </div>
             <div>
                <input
@@ -85,11 +125,11 @@ const LoginPage = () => {
                ></i>
             </div>
             <div>
-               <button className="btn btn-primary">Log In</button>
+               <button className="btn btn-primary">Create Account</button>
             </div>
          </form>
       </div>
    );
 };
 
-export default LoginPage;
+export default RegisterPage;

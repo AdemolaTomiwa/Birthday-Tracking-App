@@ -60,3 +60,72 @@ h5 {
       }
    }
 }
+
+// Form
+form {
+   div {
+      margin: 1.5rem 0;
+      position: relative;
+
+      input {
+         font-family: 'Montserrat Alternates', sans-serif;
+         display: block;
+         padding: 0.9rem;
+         width: 100%;
+         border: none;
+         outline: none;
+         background-color: $dark-color;
+         color: $white-color;
+         font-size: 1rem;
+         border-radius: 10px;
+      }
+
+      input[type='date']::-webkit-inner-spin-button,
+      input[type='date']::-webkit-calendar-picker-indicator {
+         display: none;
+         -webkit-appearance: none;
+      }
+
+      input[type='date'] {
+         color: $grey-color;
+      }
+
+      i {
+         position: absolute;
+         top: 50%;
+         right: 3%;
+         transform: translate(-3%, -50%);
+         font-size: 1.3rem;
+         color: $grey-color;
+      }
+
+      .btn {
+         width: 100%;
+      }
+   }
+}
+
+.error-msg {
+   color: $danger-color;
+   font-weight: bold;
+   margin: -1rem 0.5rem;
+   margin-bottom: 1rem;
+}
+
+.loader {
+   background-color: rgba($black-color, 0.8);
+   color: $white-color;
+   width: 100vw;
+   height: 100vh;
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+
+   i {
+      font-size: 3rem;
+      margin-top: 3rem;
+   }
+}

@@ -1,7 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearErrors } from '../actions/errorActions';
 
 const HomePage = () => {
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+   const userState = useSelector((state) => state.user);
+   const { user } = userState;
+
+   useEffect(() => {
+      dispatch(clearErrors());
+
+      if (user) {
+         navigate('/welcome');
+      }
+   }, [navigate, user, dispatch]);
+
    return (
       <div className="home-page">
          <h1 className="intro">

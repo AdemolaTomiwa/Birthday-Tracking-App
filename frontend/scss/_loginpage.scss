@@ -1,0 +1,76 @@
+.login-page {
+   span {
+      color: $primary-color;
+   }
+
+   margin: 3rem 0;
+
+   h5 {
+      text-transform: uppercase;
+      color: $grey-color;
+   }
+
+   h3 {
+      margin: 1rem 2rem;
+   }
+
+   p {
+      color: $grey-color;
+   }
+
+   form {
+      margin: 3rem 0;
+      div {
+         width: 40%;
+      }
+   }
+}
+
+.register-page {
+   margin: 2rem 0;
+
+   span {
+      color: $primary-color;
+   }
+
+   h5 {
+      text-transform: uppercase;
+      color: $grey-color;
+   }
+
+   h3 {
+      margin: 1rem 2rem;
+   }
+
+   p {
+      color: $grey-color;
+   }
+
+   form {
+      margin: 2rem 0;
+
+      .group {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         margin: -1.5rem 0;
+         grid-gap: 1rem;
+
+         i {
+            position: absolute;
+            top: 50%;
+            right: 4%;
+            transform: translate(-4%, -50%);
+            font-size: 1.3rem;
+            color: $grey-color;
+         }
+
+         div {
+            width: 100%;
+         }
+      }
+
+      div {
+         width: 45%;
+      }
+   }
+}
