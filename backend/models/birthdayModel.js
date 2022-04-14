@@ -12,12 +12,16 @@ const birthdaySchema = new mongoose.Schema(
       },
       email: {
          type: String,
-         required: true,
+         required: false,
          unique: true,
       },
       birthday: {
          type: Date,
          required: true,
+      },
+      imageStr: {
+         type: String,
+         required: false,
       },
    },
    {

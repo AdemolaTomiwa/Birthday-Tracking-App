@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createBirthday } from '../actions/birthdayActions';
 
 const CreateBirthdayPage = () => {
+   const dispatch = useDispatch();
+
    const [firstName, setFirstName] = useState('');
    const [lastName, setLastName] = useState('');
    const [email, setEmail] = useState('');
    const [birthday, setBirthday] = useState('');
-
-   const [fileInputState, setFileInputState] = useState('');
+   const [imageStr] = useState('');
+   const [fileInputState] = useState('');
    const [previewSource, setPreviewSource] = useState('');
-   const [selectedFile, setSelectedFile] = useState();
+   // const [selectedFile, setSelectedFile] = useState();
 
    const handleFileInputChange = (e) => {
       const file = e.target.files[0];
+
       previewFile(file);
-      setSelectedFile(file);
-      setFileInputState(e.target.value);
+      // setSelectedFile(file)
    };
 
    const previewFile = (file) => {
@@ -22,7 +26,32 @@ const CreateBirthdayPage = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
          setPreviewSource(reader.result);
+         uploadImage(reader.result);
       };
+   };
+
+   const uploadImage = (base64EncodedImage) => {
+      fetch('/api/birthday/uploads', {
+         method: 'POST',
+         body: JSON.stringify({ data: base64EncodedImage }),
+         headers: { 'Content-type': 'application/json' },
+      })
+         .then((response) => console.log(response))
+         .catch((err) => console.log(err));
+   };
+
+   const onSubmit = (e) => {
+      e.preventDefault();
+
+      const newBirthday = {
+         firstName,
+         lastName,
+         email,
+         birthday,
+         imageStr,
+      };
+
+      dispatch(createBirthday(newBirthday));
    };
 
    return (
@@ -31,7 +60,7 @@ const CreateBirthdayPage = () => {
             Create <span>Birthday</span> Schedule
          </h3>
 
-         <form>
+         <form onSubmit={onSubmit}>
             <div className="form-img">
                <div className="img-container">
                   {previewSource ? (

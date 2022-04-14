@@ -3,6 +3,9 @@ import {
    BIRTHDAY_LIST_FAIL,
    BIRTHDAY_LIST_REQUEST,
    BIRTHDAY_LIST_SUCCESS,
+   CREATE_BIRTHDAY_FAIL,
+   CREATE_BIRTHDAY_REQUEST,
+   CREATE_BIRTHDAY_SUCCESS,
 } from '../constants/birthdayConstants';
 
 import { returnErrors } from './errorActions';
@@ -23,6 +26,25 @@ export const getBirthdays = () => (dispatch, getState) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({
             type: BIRTHDAY_LIST_FAIL,
+         });
+      });
+};
+
+export const createBirthday = (birthday) => (dispatch, getState) => {
+   dispatch({ type: CREATE_BIRTHDAY_REQUEST });
+
+   axios
+      .post('/api/birthday', birthday, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: CREATE_BIRTHDAY_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({
+            type: CREATE_BIRTHDAY_FAIL,
          });
       });
 };
