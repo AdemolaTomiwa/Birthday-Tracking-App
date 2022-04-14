@@ -3,6 +3,8 @@
 @import 'homepage';
 @import 'loginpage';
 @import 'welcomepage';
+@import 'birthdayspage';
+@import 'createbirthdaypage';
 
 * {
    margin: 0%;
@@ -19,16 +21,19 @@ body {
    color: $white-color;
    background-image: url('https://images.pexels.com/photos/1974197/pexels-photo-1974197.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
    z-index: 3;
+   background-size: cover;
+   background-repeat: no-repeat;
 }
 
 body::after {
    content: '';
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
+   bottom: 0;
+   right: 0;
    background: rgba($black-color, 0.7);
    width: 100vw;
-   height: 100vh;
    z-index: -1;
 }
 
@@ -71,7 +76,7 @@ header {
 
 .options {
    .option-icon {
-      position: absolute;
+      position: fixed;
       bottom: 4%;
       right: 2%;
       transform: translate(-2%, -4%);
@@ -97,7 +102,7 @@ header {
    &-container-show {
       background-color: $white-color;
       color: $black-color;
-      position: absolute;
+      position: fixed;
       bottom: 10%;
       right: 0%;
       width: 300px;
@@ -108,6 +113,11 @@ header {
       justify-content: space-between;
       border-radius: 10px;
       overflow: hidden;
+
+      a {
+         color: $dark-color;
+         width: 100%;
+      }
 
       div {
          padding: 1rem;

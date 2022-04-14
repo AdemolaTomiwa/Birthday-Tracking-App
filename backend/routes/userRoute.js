@@ -44,10 +44,11 @@ router.post('/', (req, res) => {
                      jwt.sign(
                         { id: user._id },
                         process.env.JWT_SECRET,
-                        (err) => {
+                        (err, token) => {
                            if (err) throw err;
 
                            res.json({
+                              token,
                               user: {
                                  id: user._id,
                                  firstName: user.firstName,
@@ -62,7 +63,7 @@ router.post('/', (req, res) => {
                });
             });
          })
-         .catch((err) => console.log(err));
+         .catch((err) => res.status(400).json({ msg: 'An error Occured!!!' }));
    }
 });
 

@@ -33,23 +33,30 @@ router.post('/', (req, res) => {
                         .json({ msg: 'Invalid Credentials!' });
                   }
 
-                  jwt.sign({ id: user._id }, process.env.JWT_SECRET, (err) => {
-                     if (err) throw err;
+                  jwt.sign(
+                     { id: user._id },
+                     process.env.JWT_SECRET,
+                     (err, token) => {
+                        if (err) throw err;
 
-                     res.status(200).json({
-                        user: {
-                           id: user._id,
-                           firstName: user.firstName,
-                           lastName: user.lastName,
-                           email: user.email,
-                           birthday: user.birthday,
-                        },
-                     });
-                  });
+                        res.status(200).json({
+                           token,
+                           user: {
+                              id: user._id,
+                              firstName: user.firstName,
+                              lastName: user.lastName,
+                              email: user.email,
+                              birthday: user.birthday,
+                           },
+                        });
+                     }
+                  );
                })
-               .catch((err) => console.log(err));
+               .catch((err) =>
+                  res.status(400).json({ msg: 'An error Occured!!!' })
+               );
          })
-         .catch((err) => console.log(err));
+         .catch((err) => res.status(400).json({ msg: 'An error Occured!!!' }));
    }
 });
 

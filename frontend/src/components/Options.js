@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../actions/userActions';
 
@@ -42,7 +43,9 @@ const Options = () => {
             }
          >
             <div onClick={logout}>Sign Out</div>
-            <div>Profile</div>
+            <Link to="/profile">
+               <div>Profile</div>
+            </Link>
             <div className="name">
                <i className="fas fa-user"></i>{' '}
                {user ? (

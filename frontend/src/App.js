@@ -10,6 +10,9 @@ import LoginPage from './screens/LoginPage';
 import RegisterPage from './screens/RegisterPage';
 import WelcomePage from './screens/WelcomePage';
 import Options from './components/Options';
+import ProfilePage from './screens/ProfilePage';
+import BirthdaysPage from './screens/BirthdaysPage';
+import CreateBirthdayPage from './screens/CreateBirthdayPage';
 
 class App extends Component {
    render() {
@@ -23,6 +26,12 @@ class App extends Component {
                      <Route path="/login" element={<LoginPage />} />
                      <Route path="/register" element={<RegisterPage />} />
                      <Route path="/welcome" element={<WelcomePage />} />
+                     <Route path="/profile" element={<ProfilePage />} />
+                     <Route path="/birthdays" element={<BirthdaysPage />} />
+                     <Route
+                        path="/create-birthday"
+                        element={<CreateBirthdayPage />}
+                     />
                   </Routes>
                </div>
                <Options />

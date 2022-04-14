@@ -13,6 +13,7 @@ const initialState = {
       ? JSON.parse(localStorage.getItem('user'))
       : null,
    isAuthenticated: localStorage.getItem('user') ? true : null,
+   token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
    userLoading: false,
 };
 
@@ -29,17 +30,20 @@ export default function userReducer(state = initialState, action) {
          return {
             ...state,
             userLoading: false,
-            user: action.payload,
+            user: action.payload.user,
+            token: action.payload.token,
             isAuthenticated: true,
          };
       case USER_LOGIN_FAIL:
       case USER_REGISTER_FAIL:
       case LOGOUT:
          localStorage.removeItem('user');
+         localStorage.removeItem('token');
          return {
             ...state,
             userLoading: false,
             user: null,
+            token: null,
             isAuthenticated: null,
          };
       default:
