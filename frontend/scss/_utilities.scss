@@ -112,6 +112,17 @@ form {
    margin-bottom: 1rem;
 }
 
+.success-msg {
+   color: $primary-color;
+   font-weight: bold;
+   margin: -1rem 0.5rem;
+   margin-bottom: 1rem;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
 .loader {
    background-color: rgba($black-color, 0.8);
    color: $white-color;

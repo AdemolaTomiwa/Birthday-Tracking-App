@@ -60,7 +60,7 @@ const WelcomePage = () => {
             </Link>
             <Link to="/create-birthday">
                <button className="btn btn-primary">
-                  Create Bithday Schedule
+                  Create Birthday Schedule
                </button>
             </Link>
          </div>

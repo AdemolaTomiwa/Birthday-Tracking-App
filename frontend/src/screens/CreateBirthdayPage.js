@@ -1,24 +1,49 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { createBirthday } from '../actions/birthdayActions';
+import Loader from '../components/Loader';
 
 const CreateBirthdayPage = () => {
    const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    const [firstName, setFirstName] = useState('');
    const [lastName, setLastName] = useState('');
    const [email, setEmail] = useState('');
    const [birthday, setBirthday] = useState('');
-   const [imageStr] = useState('');
+   const [imageStr, setImageStr] = useState('');
    const [fileInputState] = useState('');
+   const [imageFilled, setImageFilled] = useState(false);
+   const [errorMsg, setErrorMsg] = useState('');
    const [previewSource, setPreviewSource] = useState('');
-   // const [selectedFile, setSelectedFile] = useState();
+
+   const birthdayState = useSelector((state) => state.birthday);
+   const { success, birthdayLoading } = birthdayState;
+
+   const userState = useSelector((state) => state.user);
+   const { user } = userState;
+
+   const errorState = useSelector((state) => state.error);
+   const { msg } = errorState;
+
+   useEffect(() => {
+      if (!user) {
+         navigate('/login');
+      }
+
+      if (success) {
+         navigate('/birthdays');
+      }
+   }, [navigate, success, user]);
 
    const handleFileInputChange = (e) => {
       const file = e.target.files[0];
 
       previewFile(file);
-      // setSelectedFile(file)
+
+      setImageFilled(true);
    };
 
    const previewFile = (file) => {
@@ -31,12 +56,11 @@ const CreateBirthdayPage = () => {
    };
 
    const uploadImage = (base64EncodedImage) => {
-      fetch('/api/birthday/uploads', {
-         method: 'POST',
-         body: JSON.stringify({ data: base64EncodedImage }),
-         headers: { 'Content-type': 'application/json' },
-      })
-         .then((response) => console.log(response))
+      axios
+         .post('/api/uploads', { data: base64EncodedImage })
+         .then((res) => {
+            setImageStr(res.data);
+         })
          .catch((err) => console.log(err));
    };
 
@@ -49,9 +73,14 @@ const CreateBirthdayPage = () => {
          email,
          birthday,
          imageStr,
+         user: user.id,
       };
 
-      dispatch(createBirthday(newBirthday));
+      if (!imageFilled || !firstName || !lastName || !birthday || !imageStr) {
+         setErrorMsg('Please enter all fields!!!');
+      } else {
+         dispatch(createBirthday(newBirthday));
+      }
    };
 
    return (
@@ -59,6 +88,8 @@ const CreateBirthdayPage = () => {
          <h3>
             Create <span>Birthday</span> Schedule
          </h3>
+
+         {birthdayLoading && <Loader />}
 
          <form onSubmit={onSubmit}>
             <div className="form-img">
@@ -71,6 +102,15 @@ const CreateBirthdayPage = () => {
                      </div>
                   )}
                </div>
+               <div
+                  style={{ width: '100%', margin: '1rem 0' }}
+                  className="error-msg"
+               >
+                  {msg}
+               </div>
+               <div style={{ width: '100%' }} className="error-msg">
+                  {errorMsg}
+               </div>
                <input
                   type="file"
                   onChange={handleFileInputChange}
@@ -79,6 +119,7 @@ const CreateBirthdayPage = () => {
                   className="form-image"
                />
             </div>
+
             <div className="group">
                <div>
                   <input

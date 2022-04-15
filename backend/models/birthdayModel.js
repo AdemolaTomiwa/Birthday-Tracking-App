@@ -23,6 +23,11 @@ const birthdaySchema = new mongoose.Schema(
          type: String,
          required: false,
       },
+      user: {
+         type: mongoose.Schema.Types.ObjectId,
+         required: true,
+         ref: 'User',
+      },
    },
    {
       timestamps: true,

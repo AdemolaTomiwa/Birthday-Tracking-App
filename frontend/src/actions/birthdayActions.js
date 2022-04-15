@@ -15,7 +15,7 @@ export const getBirthdays = () => (dispatch, getState) => {
    dispatch({ type: BIRTHDAY_LIST_REQUEST });
 
    axios
-      .get('/api/birthday', tokenConfig(getState))
+      .get('/api/birthday/mine', tokenConfig(getState))
       .then((res) => {
          dispatch({
             type: BIRTHDAY_LIST_SUCCESS,

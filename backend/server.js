@@ -4,13 +4,14 @@ import dotenv from 'dotenv';
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
 import birthdayRoute from './routes/birthdayRoute.js';
+import uploadRoute from './routes/uploadRoute.js';
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Mongo Connect
 mongoose
@@ -22,6 +23,7 @@ mongoose
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/birthday', birthdayRoute);
+app.use('/api/uploads', uploadRoute);
 
 const PORT = process.env.PORT || 5000;
 
