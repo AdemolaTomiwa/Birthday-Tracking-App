@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+   BIRTHDAY_DETAILS_FAIL,
+   BIRTHDAY_DETAILS_REQUEST,
+   BIRTHDAY_DETAILS_SUCCESS,
    BIRTHDAY_LIST_FAIL,
    BIRTHDAY_LIST_REQUEST,
    BIRTHDAY_LIST_SUCCESS,
@@ -15,7 +18,7 @@ export const getBirthdays = () => (dispatch, getState) => {
    dispatch({ type: BIRTHDAY_LIST_REQUEST });
 
    axios
-      .get('/api/birthday/mine', tokenConfig(getState))
+      .get('/api/birthday', tokenConfig(getState))
       .then((res) => {
          dispatch({
             type: BIRTHDAY_LIST_SUCCESS,
@@ -26,6 +29,25 @@ export const getBirthdays = () => (dispatch, getState) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({
             type: BIRTHDAY_LIST_FAIL,
+         });
+      });
+};
+
+export const getBirthday = (id) => (dispatch, getState) => {
+   dispatch({ type: BIRTHDAY_DETAILS_REQUEST });
+
+   axios
+      .get(`/api/birthday/${id}`, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: BIRTHDAY_DETAILS_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({
+            type: BIRTHDAY_DETAILS_FAIL,
          });
       });
 };

@@ -141,3 +141,15 @@ form {
       margin-top: 3rem;
    }
 }
+
+.back {
+   display: inline-block;
+   margin: 1rem 0;
+   font-weight: bold;
+   color: $grey-color;
+   @include easeOut();
+
+   &:hover {
+      color: $white-color;
+   }
+}

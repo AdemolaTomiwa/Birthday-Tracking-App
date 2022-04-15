@@ -1,23 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 
 const Birthday = ({ birthday }) => {
-   // const fullMonth = [
-   //    'January',
-   //    'February',
-   //    'March',
-   //    'April',
-   //    'May',
-   //    'June',
-   //    'July',
-   //    'August',
-   //    'September',
-   //    'October',
-   //    'November',
-   //    'December',
-   // ];
-
    const birthdayState = useSelector((state) => state.birthday);
    const { birthdayLoading } = birthdayState;
 
@@ -32,18 +18,23 @@ const Birthday = ({ birthday }) => {
          ) : (
             <div className="birthday">
                <div className="img">
-                  <img src={birthday.imageStr} alt={birthday.firstName} />
+                  <Link to={`/birthday/${birthday._id}`}>
+                     <img src={birthday.imageStr} alt={birthday.firstName} />
+                  </Link>
                </div>
                <div className="name">
-                  <h4>
-                     {birthday.firstName} <span>{birthday.lastName}</span>
-                  </h4>
-                  <p>29 Days 14 Hours remaining</p>
+                  <Link to={`/birthday/${birthday._id}`}>
+                     <h4>
+                        {birthday.firstName} <span>{birthday.lastName}</span>
+                     </h4>
+                  </Link>
                </div>
                <div className="date">
-                  <h5>
-                     {day}/{month}
-                  </h5>
+                  <Link to={`/birthday/${birthday._id}`}>
+                     <h5>
+                        {day} / {month}
+                     </h5>
+                  </Link>
                </div>
             </div>
          )}

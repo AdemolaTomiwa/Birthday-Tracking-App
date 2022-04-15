@@ -13,6 +13,7 @@ import Options from './components/Options';
 import ProfilePage from './screens/ProfilePage';
 import BirthdaysPage from './screens/BirthdaysPage';
 import CreateBirthdayPage from './screens/CreateBirthdayPage';
+import BirthdayPage from './screens/BirthdayPage';
 
 class App extends Component {
    render() {
@@ -28,6 +29,7 @@ class App extends Component {
                      <Route path="/welcome" element={<WelcomePage />} />
                      <Route path="/profile" element={<ProfilePage />} />
                      <Route path="/birthdays" element={<BirthdaysPage />} />
+                     <Route path="/birthday/:id" element={<BirthdayPage />} />
                      <Route
                         path="/create-birthday"
                         element={<CreateBirthdayPage />}
