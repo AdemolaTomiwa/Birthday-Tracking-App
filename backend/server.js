@@ -25,6 +25,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/birthday', birthdayRoute);
 app.use('/api/uploads', uploadRoute);
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
+const PORT = 3001;
 
 app.listen(PORT, () => console.log(`Server Stated on port ${PORT}`));

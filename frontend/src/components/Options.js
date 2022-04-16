@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../actions/userActions';
+import { useSelector } from 'react-redux';
 
 const Options = () => {
-   const dispatch = useDispatch();
-
    const [show, setShow] = useState(false);
-   const [showContainer, setShowContainer] = useState(false);
 
    const userState = useSelector((state) => state.user);
    const { user } = userState;
@@ -20,23 +16,16 @@ const Options = () => {
       }
    }, [user]);
 
-   const logout = () => {
-      dispatch(logoutUser());
-
-      setShowContainer(false);
-   };
-
    return (
       <div className="options">
          {show && (
-            <div
-               onClick={() => setShowContainer(!showContainer)}
-               className="option-icon"
-            >
-               <i className="fas fa-user"></i>
-            </div>
+            <Link to="/profile">
+               <div className="option-icon">
+                  <i className="fas fa-user"></i>
+               </div>
+            </Link>
          )}
-
+         {/* 
          <div
             className={
                showContainer ? 'options-container-show' : 'options-container'
@@ -54,7 +43,7 @@ const Options = () => {
                   </>
                ) : null}
             </div>
-         </div>
+         </div> */}
       </div>
    );
 };

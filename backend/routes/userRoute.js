@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -65,6 +66,56 @@ router.post('/', (req, res) => {
          })
          .catch((err) => res.status(400).json({ msg: 'An error Occured!!!' }));
    }
+});
+
+// Update user profile
+// PUT @/api/users/profile
+// PRIVATE
+router.put('/profile', auth, (req, res) => {
+   User.findById(req.user.id).then((user) => {
+      if (user) {
+         user.firstName = req.body.firstName || user.firstName;
+         user.lastName = req.body.lastName || user.lastName;
+         user.email = req.body.email || user.email;
+         user.birthday = req.body.birthday || user.birthday;
+
+         if (req.body.password) {
+            user.password = req.body.password;
+         }
+
+         bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(user.password, salt, (err, hash) => {
+               if (err) throw err;
+
+               user.password = hash;
+
+               //   update user
+               user.save().then((user) => {
+                  jwt.sign(
+                     { id: user._id },
+                     process.env.JWT_SECRET,
+                     (err, token) => {
+                        if (err) throw err;
+
+                        res.json({
+                           token,
+                           user: {
+                              id: user._id,
+                              firstName: user.firstName,
+                              lastName: user.lastName,
+                              email: user.email,
+                              birthday: user.birthday,
+                           },
+                        });
+                     }
+                  );
+               });
+            });
+         });
+      } else {
+         res.status(400).json({ msg: 'User does not exist!!!' });
+      }
+   });
 });
 
 export default router;

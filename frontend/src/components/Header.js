@@ -14,7 +14,9 @@ const Header = () => {
 
    const today = new Date();
 
-   const day = `${today.getDate()}/${today.getMonth()}/${today.getFullYear()}`;
+   const day = `${today.getDate()}/${
+      today.getMonth() + 1
+   }/${today.getFullYear()}`;
    useEffect(() => {
       dispatch(clearErrors());
 

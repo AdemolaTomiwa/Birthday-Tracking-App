@@ -21,7 +21,13 @@ router.get('/', auth, (req, res) => {
 // Private
 router.get('/:id', auth, (req, res) => {
    Birthday.findById(req.params.id)
-      .then((birthday) => res.status(200).json(birthday))
+      .then((birthday) => {
+         if (birthday) {
+            res.status(200).json(birthday);
+         } else {
+            res.status(400).json({ msg: 'An error has occured!!!' });
+         }
+      })
       .catch((err) => res.status(400).json({ msg: 'An error occured!!!' }));
 });
 
@@ -42,6 +48,17 @@ router.post('/', auth, (req, res) => {
       .then((birthday) => {
          res.status(200).json(birthday);
       })
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
+// Get Latest birthday
+// GET @/api/birthday/latest
+// PRIVATE
+router.get('/latest/birthday', auth, (req, res) => {
+   Birthday.find({ user: req.user.id })
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .then((birthday) => res.status(200).json(birthday))
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 

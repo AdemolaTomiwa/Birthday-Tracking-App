@@ -8,6 +8,9 @@ import {
    BIRTHDAY_DETAILS_REQUEST,
    BIRTHDAY_DETAILS_SUCCESS,
    BIRTHDAY_DETAILS_FAIL,
+   LATEST_BIRTHDAY_REQUEST,
+   LATEST_BIRTHDAY_SUCCESS,
+   LATEST_BIRTHDAY_FAIL,
 } from '../constants/birthdayConstants';
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
    birthday: null,
    birthdayLoading: false,
    success: null,
+   latestBirthday: [],
 };
 
 export default function birthdayReducer(state = initialState, action) {
@@ -22,6 +26,7 @@ export default function birthdayReducer(state = initialState, action) {
       case BIRTHDAY_LIST_REQUEST:
       case CREATE_BIRTHDAY_REQUEST:
       case BIRTHDAY_DETAILS_REQUEST:
+      case LATEST_BIRTHDAY_REQUEST:
          return {
             ...state,
             birthdayLoading: true,
@@ -45,15 +50,23 @@ export default function birthdayReducer(state = initialState, action) {
             success: true,
             birthdayLoading: false,
          };
+      case LATEST_BIRTHDAY_SUCCESS:
+         return {
+            ...state,
+            birthdayLoading: false,
+            latestBirthday: action.payload,
+         };
       case BIRTHDAY_LIST_FAIL:
       case CREATE_BIRTHDAY_FAIL:
       case BIRTHDAY_DETAILS_FAIL:
+      case LATEST_BIRTHDAY_FAIL:
          return {
             ...state,
             birthdays: [],
             birthday: null,
             birthdayLoading: false,
             success: false,
+            latestBirthday: [],
          };
       default:
          return state;
