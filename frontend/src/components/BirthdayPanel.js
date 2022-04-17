@@ -15,8 +15,8 @@ const BirthdayPanel = ({ name, day, month }) => {
 
    if (day === undefined || month === undefined) {
       // This is if not enough params are provided
-      month = 4; // Month of the Birthday
-      day = 16; // Day of the Birthday
+      month = 1; // Month of the Birthday
+      day = 1; // Day of the Birthday
    }
 
    // get current time

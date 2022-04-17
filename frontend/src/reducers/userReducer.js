@@ -52,10 +52,15 @@ export default function userReducer(state = initialState, action) {
       case USER_UPDATE_PROFILE_RESET:
          return {
             ...state,
+            success: false,
+         };
+      case USER_UPDATE_PROFILE_FAIL:
+         return {
+            ...state,
+            userLoading: false,
          };
       case USER_LOGIN_FAIL:
       case USER_REGISTER_FAIL:
-      case USER_UPDATE_PROFILE_FAIL:
       case LOGOUT:
          localStorage.removeItem('user');
          localStorage.removeItem('token');

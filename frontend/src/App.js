@@ -14,12 +14,16 @@ import ProfilePage from './screens/ProfilePage';
 import BirthdaysPage from './screens/BirthdaysPage';
 import CreateBirthdayPage from './screens/CreateBirthdayPage';
 import BirthdayPage from './screens/BirthdayPage';
+import EditProfilePage from './screens/EditProfilePage';
+import ScrollToTop from './components/ScrollToTop';
+import Footer from './components/Footer';
 
 class App extends Component {
    render() {
       return (
          <Provider store={store}>
             <Router>
+               <ScrollToTop />
                <Header />
                <div className="container">
                   <Routes>
@@ -28,6 +32,10 @@ class App extends Component {
                      <Route path="/register" element={<RegisterPage />} />
                      <Route path="/welcome" element={<WelcomePage />} />
                      <Route path="/profile" element={<ProfilePage />} />
+                     <Route
+                        path="/edit-profile"
+                        element={<EditProfilePage />}
+                     />
                      <Route path="/birthdays" element={<BirthdaysPage />} />
                      <Route path="/birthday/:id" element={<BirthdayPage />} />
                      <Route
@@ -37,6 +45,7 @@ class App extends Component {
                   </Routes>
                </div>
                <Options />
+               <Footer />
             </Router>
          </Provider>
       );

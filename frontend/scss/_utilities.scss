@@ -12,6 +12,7 @@ a {
    width: 80%;
    margin: 0 auto;
    max-width: 1224px;
+   min-height: 80vh;
 }
 
 @mixin easeOut {
@@ -123,12 +124,20 @@ form {
    transform: translate(-50%, -50%);
 }
 
+.success-msg-alt {
+   color: $primary-color;
+   font-weight: bold;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
 .loader {
    background-color: rgba($black-color, 0.8);
    color: $white-color;
    width: 100vw;
    height: 100vh;
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
    display: flex;
@@ -151,5 +160,67 @@ form {
 
    &:hover {
       color: $white-color;
+   }
+}
+
+.alert-modal {
+   background-color: rgba($black-color, 0.8);
+   color: $white-color;
+   width: 100vw;
+   min-height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   z-index: 4;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   .content {
+      background-color: $dark-color;
+      width: 40%;
+      text-align: center;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .head {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 0.5rem 2rem;
+         border-bottom: 3px solid $primary-color;
+
+         .icon {
+            padding: 0.6rem 0.8rem;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            @include easeOut();
+
+            &:hover {
+               background-color: $primary-color;
+            }
+            i {
+               font-size: 2rem;
+               font-weight: 300;
+            }
+         }
+      }
+
+      .body {
+         margin: 2rem 0;
+      }
+
+      .button {
+         .btn {
+            border-radius: 0;
+            width: 100%;
+         }
+      }
    }
 }

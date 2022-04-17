@@ -1,0 +1,106 @@
+.edit-profile-page {
+   .name-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 40%;
+      text-align: center;
+
+      img {
+         width: 270px;
+         height: 270px;
+         border-radius: 100%;
+         object-fit: cover;
+         border: 3px solid $primary-color;
+         margin: 1rem 0;
+      }
+
+      h3 {
+         span {
+            color: $primary-color;
+         }
+      }
+   }
+
+   form {
+      margin: 2rem 0;
+
+      .form-img {
+         .img-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            .img {
+               background-color: $grey-color;
+               color: $black-color;
+               width: 150px;
+               height: 150px;
+               border-radius: 100%;
+               border: 3px solid $primary-color;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               cursor: not-allowed;
+               object-fit: cover;
+               @include easeOut();
+
+               p {
+                  font-weight: bold;
+                  color: $black-color;
+               }
+
+               &:hover {
+                  background-color: $white-color;
+               }
+            }
+         }
+
+         .form-image::-webkit-file-upload-button {
+            visibility: hidden;
+         }
+
+         .form-image::before {
+            display: inline;
+            content: 'Take Photo';
+            background: $grey-color;
+            padding: 0.5rem 1rem;
+            outline: none;
+            font-weight: bold;
+            color: $black-color;
+            font-size: 0.8rem;
+            cursor: pointer;
+            @include easeOut();
+         }
+         .file:hover::before {
+            background-color: darken($white-color, 3%);
+         }
+      }
+
+      .group {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         margin: -1.5rem 0;
+         grid-gap: 1rem;
+
+         i {
+            position: absolute;
+            top: 50%;
+            right: 4%;
+            transform: translate(-4%, -50%);
+            font-size: 1.3rem;
+            color: $grey-color;
+         }
+
+         div {
+            width: 100%;
+         }
+      }
+
+      div {
+         width: 45%;
+      }
+   }
+}

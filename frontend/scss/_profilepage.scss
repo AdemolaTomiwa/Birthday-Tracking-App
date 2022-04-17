@@ -14,21 +14,6 @@
          width: 40%;
          text-align: center;
 
-         .icon {
-            background-color: $dark-color;
-            width: 7rem;
-            height: 7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 100%;
-
-            i {
-               color: $grey-color;
-               font-size: 3rem;
-            }
-         }
-
          img {
             width: 270px;
             height: 270px;
@@ -68,8 +53,8 @@
       .age {
          background-color: $dark-color;
          color: $primary-color;
-         width: 7rem;
-         height: 7rem;
+         width: 8rem;
+         height: 8rem;
          display: flex;
          align-items: center;
          justify-content: center;

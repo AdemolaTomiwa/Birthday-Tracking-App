@@ -51,6 +51,7 @@ const CreateBirthdayPage = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
          setPreviewSource(reader.result);
+         setErrorMsg('');
          uploadImage(reader.result);
       };
    };

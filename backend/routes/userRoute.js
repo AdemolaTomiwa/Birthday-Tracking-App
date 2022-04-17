@@ -83,6 +83,7 @@ router.put('/profile', auth, (req, res) => {
          user.lastName = req.body.lastName || user.lastName;
          user.email = req.body.email || user.email;
          user.birthday = req.body.birthday || user.birthday;
+         user.imageStr = req.body.imageStr || user.imageStr;
 
          if (req.body.password) {
             user.password = req.body.password;
@@ -110,6 +111,7 @@ router.put('/profile', auth, (req, res) => {
                               lastName: user.lastName,
                               email: user.email,
                               birthday: user.birthday,
+                              imageStr: user.imageStr,
                            },
                         });
                      }

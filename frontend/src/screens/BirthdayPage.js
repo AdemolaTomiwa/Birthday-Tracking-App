@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBirthday } from '../actions/birthdayActions';
+import { deleteBirthday, getBirthday } from '../actions/birthdayActions';
 import Loader from '../components/Loader';
 import BirthdayPanel from '../components/BirthdayPanel';
+import AlertModal from '../components/AlertModal';
 
 const BirthdayPage = () => {
    const params = useParams();
    const dispatch = useDispatch();
    const navigate = useNavigate();
+
+   const [openModal, setOpenModal] = useState(false);
 
    const birthdayState = useSelector((state) => state.birthday);
    const { birthdayLoading, birthday } = birthdayState;
@@ -42,6 +45,14 @@ const BirthdayPage = () => {
       }
    }, [dispatch, params, birthday, navigate, user]);
 
+   const confirmDeleteHandler = (id) => {
+      setOpenModal(false);
+
+      dispatch(deleteBirthday(id));
+
+      navigate('/birthdays');
+   };
+
    return (
       <>
          <Link className="back" to="/birthdays">
@@ -73,6 +84,18 @@ const BirthdayPage = () => {
                         name={birthday.firstName}
                         day={day}
                         month={month}
+                     />
+                     <div className="delete-btn">
+                        <i
+                           onClick={() => setOpenModal(true)}
+                           className="fas fa-trash"
+                        ></i>
+                     </div>
+                     <AlertModal
+                        open={openModal}
+                        body={'Are you sure?'}
+                        close={() => setOpenModal(false)}
+                        accept={() => confirmDeleteHandler(birthday._id)}
                      />
                   </div>
                )}

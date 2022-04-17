@@ -11,7 +11,7 @@ import Birthday from '../models/birthdayModel.js';
 // Private
 router.get('/', auth, (req, res) => {
    Birthday.find({ user: req.user.id })
-      .sort({ createdAt: 1 })
+      .sort({ createdAt: -1 })
       .then((birthday) => res.status(200).json(birthday))
       .catch((err) => res.status(400).json({ msg: 'An error occured!!!' }));
 });
@@ -31,6 +31,9 @@ router.get('/:id', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!!!' }));
 });
 
+// Create a birthday
+// POST @/api/birthday/
+// Private
 router.post('/', auth, (req, res) => {
    const { firstName, lastName, email, birthday, imageStr, user } = req.body;
 
@@ -59,6 +62,26 @@ router.get('/latest/birthday', auth, (req, res) => {
       .sort({ createdAt: -1 })
       .limit(3)
       .then((birthday) => res.status(200).json(birthday))
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
+// Delete a birthday
+// DELETE @/api/birthday/:id
+// Private
+router.delete('/:id', auth, (req, res) => {
+   Birthday.findById(req.params.id)
+      .then((birthday) => {
+         if (birthday) {
+            birthday
+               .remove()
+               .then(() => res.status(200).json({ msg: 'Birthday Deleted!' }))
+               .catch((err) =>
+                  res.status(400).json({ msg: 'An error occured!' })
+               );
+         } else {
+            res.status(400).json({ msg: 'Birthday schedule does not exist!' });
+         }
+      })
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 

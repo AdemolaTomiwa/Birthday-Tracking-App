@@ -8,6 +8,7 @@
 @import 'birthdaypanel';
 @import 'createbirthdaypage';
 @import 'profilepage';
+@import 'editprofilepage';
 
 * {
    margin: 0%;
@@ -147,4 +148,11 @@ header {
          }
       }
    }
+}
+
+footer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 2rem 0 1rem 0;
 }

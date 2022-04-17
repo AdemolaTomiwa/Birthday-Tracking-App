@@ -9,6 +9,9 @@ import {
    CREATE_BIRTHDAY_FAIL,
    CREATE_BIRTHDAY_REQUEST,
    CREATE_BIRTHDAY_SUCCESS,
+   DELETE_BIRTHDAY_FAIL,
+   DELETE_BIRTHDAY_REQUEST,
+   DELETE_BIRTHDAY_SUCCESS,
    LATEST_BIRTHDAY_FAIL,
    LATEST_BIRTHDAY_REQUEST,
    LATEST_BIRTHDAY_SUCCESS,
@@ -89,6 +92,25 @@ export const getLatestBirthday = () => (dispatch, getState) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({
             type: LATEST_BIRTHDAY_FAIL,
+         });
+      });
+};
+
+export const deleteBirthday = (id) => (dispatch, getState) => {
+   dispatch({ type: DELETE_BIRTHDAY_REQUEST });
+
+   axios
+      .delete(`/api/birthday/${id}`, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: DELETE_BIRTHDAY_SUCCESS,
+            payload: id,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({
+            type: DELETE_BIRTHDAY_FAIL,
          });
       });
 };

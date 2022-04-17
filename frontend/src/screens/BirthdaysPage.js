@@ -20,7 +20,7 @@ const BirthdaysPage = () => {
    const { user } = userState;
 
    useEffect(() => {
-      dispatch(clearErrors());
+      // dispatch(clearErrors());
       dispatch(getBirthdays());
 
       if (!user) {

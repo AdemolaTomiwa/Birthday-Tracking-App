@@ -6,6 +6,7 @@ import { clearErrors } from '../actions/errorActions';
 import { getLatestBirthday } from '../actions/birthdayActions';
 import Birthday from '../components/Birthday';
 import { logoutUser } from '../actions/userActions';
+import BirthdayPanel from '../components/BirthdayPanel';
 
 const ProfilePage = () => {
    const navigate = useNavigate();
@@ -58,13 +59,6 @@ const ProfilePage = () => {
             <div className="profile-page">
                <div className="img">
                   <div className="img-name">
-                     {/* {!user.imageStr ? (
-                        <div className="icon">
-                           <i className="fas fa-user"></i>
-                        </div>
-                     ) : (
-                        <img src={user.imageStr} alt={user.firstName} />
-                     )} */}
                      <img src={user.imageStr} alt={user.firstName} />
 
                      <div className="name">
@@ -73,7 +67,7 @@ const ProfilePage = () => {
                         </h3>
                         <h5>
                            <span>
-                              <Link to="edit-profile">Edit Profile</Link>
+                              <Link to="/edit-profile">Edit Profile</Link>
                            </span>
                            <span>/</span>
                            <span onClick={logout}>Logout</span>
@@ -100,10 +94,27 @@ const ProfilePage = () => {
                   </div>
                </div>
 
+               <div className="birthday-panel">
+                  <BirthdayPanel
+                     name={user.firstName}
+                     day={day}
+                     month={month}
+                  />
+               </div>
+
                <div className="latest-birthdays">
                   <h3>
                      Latest <span>Birthday</span> Schedule
                   </h3>
+
+                  {latestBirthday.length === 0 && (
+                     <div className="success-msg-alt">
+                        No Birthday Schedule.{'  '}
+                        <Link to="/create-birthday">
+                           Create a birthday Schedule
+                        </Link>
+                     </div>
+                  )}
                   <div className="birthdays">
                      {latestBirthday.map((birthday) => (
                         <Birthday key={birthday._id} birthday={birthday} />
