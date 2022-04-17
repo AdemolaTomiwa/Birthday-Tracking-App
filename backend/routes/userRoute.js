@@ -12,18 +12,21 @@ import User from '../models/userModel.js';
 // POST @/api/users
 // Public
 router.post('/', (req, res) => {
-   const { firstName, lastName, email, birthday, password } = req.body;
+   const { firstName, lastName, email, birthday, password, imageStr } =
+      req.body;
 
    // Validation
    if (!firstName || !lastName || !email || !birthday || !password) {
       res.status(400).json({ msg: 'Please enter all fields!' });
+   } else if (!imageStr) {
+      res.status(400).json({ msg: 'Please upload image!' });
    } else if (password.length <= 7) {
       res.status(400).json({ msg: 'Password should be at least 8 character!' });
    } else {
       User.findOne({ email })
          .then((user) => {
             if (user)
-               return res.status(400).json({ msg: 'User already exists!' });
+               return res.status(400).json({ msg: 'User already exists!!!' });
 
             const newUser = new User({
                firstName,
@@ -31,6 +34,7 @@ router.post('/', (req, res) => {
                email,
                birthday,
                password,
+               imageStr,
             });
 
             //  Create a salt
@@ -56,6 +60,7 @@ router.post('/', (req, res) => {
                                  lastName: user.lastName,
                                  email: user.email,
                                  birthday: user.birthday,
+                                 imageStr: user.imageStr,
                               },
                            });
                         }

@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
          type: String,
          required: true,
       },
+      imageStr: {
+         type: String,
+         required: false,
+      },
    },
    {
       timestamps: true,

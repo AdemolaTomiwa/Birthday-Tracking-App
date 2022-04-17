@@ -65,10 +65,7 @@ const ProfilePage = () => {
                      ) : (
                         <img src={user.imageStr} alt={user.firstName} />
                      )} */}
-                     <img
-                        src="http://res.cloudinary.com/the-tom-media/image/upload/v1650025003/gei3flpwi2mb3exk2emz.jpg"
-                        alt={user.firstName}
-                     />
+                     <img src={user.imageStr} alt={user.firstName} />
 
                      <div className="name">
                         <h3>

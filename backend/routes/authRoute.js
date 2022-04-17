@@ -47,6 +47,7 @@ router.post('/', (req, res) => {
                               lastName: user.lastName,
                               email: user.email,
                               birthday: user.birthday,
+                              imageStr: user.imageStr,
                            },
                         });
                      }

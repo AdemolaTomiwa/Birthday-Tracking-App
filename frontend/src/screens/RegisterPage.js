@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../actions/userActions';
 import Loader from '../components/Loader';
 import { clearErrors } from '../actions/errorActions';
+import axios from 'axios';
 
 const RegisterPage = () => {
    const dispatch = useDispatch();
@@ -15,6 +16,11 @@ const RegisterPage = () => {
    const [birthday, setBirthday] = useState('');
    const [password, setPassword] = useState('');
    const [showPassword, setshowPassword] = useState(false);
+   const [imageStr, setImageStr] = useState('');
+   const [fileInputState] = useState('');
+   // const [imageFilled, setImageFilled] = useState(false);
+   // const [errorMsg, setErrorMsg] = useState('');
+   const [previewSource, setPreviewSource] = useState('');
 
    // Password toggle handler
    const togglePassword = () => {
@@ -35,6 +41,32 @@ const RegisterPage = () => {
       }
    }, [navigate, user, dispatch]);
 
+   const handleFileInputChange = (e) => {
+      const file = e.target.files[0];
+
+      previewFile(file);
+
+      // setImageFilled(true);
+   };
+
+   const previewFile = (file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+         setPreviewSource(reader.result);
+         uploadImage(reader.result);
+      };
+   };
+
+   const uploadImage = (base64EncodedImage) => {
+      axios
+         .post('/api/uploads', { data: base64EncodedImage })
+         .then((res) => {
+            setImageStr(res.data);
+         })
+         .catch((err) => console.log(err));
+   };
+
    const onSubmit = (e) => {
       e.preventDefault();
 
@@ -44,6 +76,7 @@ const RegisterPage = () => {
          birthday,
          email,
          password,
+         imageStr,
       };
 
       dispatch(registerUser(user));
@@ -65,7 +98,34 @@ const RegisterPage = () => {
          {userLoading && <Loader />}
 
          <form onSubmit={onSubmit}>
-            <div className="error-msg">{msg}</div>
+            <div className="form-img">
+               <div className="img-container">
+                  {previewSource ? (
+                     <img src={previewSource} alt="chosen" className="img" />
+                  ) : (
+                     <div className="img">
+                        <p>Take Photo</p>
+                     </div>
+                  )}
+               </div>
+               <div
+                  style={{ width: '100%', margin: '1rem 0' }}
+                  className="error-msg"
+               >
+                  {msg}
+               </div>
+               {/* <div style={{ width: '100%' }} className="error-msg">
+                  {errorMsg}
+               </div> */}
+               <input
+                  type="file"
+                  onChange={handleFileInputChange}
+                  value={fileInputState}
+                  name="image"
+                  className="form-image"
+               />
+            </div>
+            {/* <div className="error-msg">{msg}</div> */}
             <div className="group">
                <div>
                   <input
