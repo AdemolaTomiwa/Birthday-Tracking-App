@@ -50,7 +50,8 @@
          }
       }
 
-      .age {
+      .age,
+      .age-active {
          background-color: $dark-color;
          color: $primary-color;
          width: 8rem;
@@ -62,11 +63,55 @@
          font-weight: bold;
          margin-top: 1rem;
          margin-right: 8rem;
+         position: relative;
+      }
+
+      .age-active:before,
+      .age-active:after {
+         content: '';
+         position: absolute;
+         top: -2px;
+         left: -2px;
+         border-radius: 100%;
+         background: linear-gradient(
+            45deg,
+            #fb0094,
+            #0000ff,
+            #00ff00,
+            #ffff00,
+            #fb0094,
+            #0000ff,
+            #00ff00,
+            #ff0000
+         );
+         background-size: 400%;
+         width: calc(100% + 4px);
+         height: calc(100% + 4px);
+         z-index: -1;
+         animation: steam 20s linear infinite;
+      }
+
+      @keyframes steam {
+         0% {
+            background-position: 0 0;
+         }
+         50% {
+            background-position: 800% 0;
+         }
+         100% {
+            background-position: 0 0;
+         }
+      }
+
+      .age-active:after {
+         filter: blur(5px);
       }
    }
 
    .boxes {
       width: 50%;
+      margin: 0 0 2rem 0;
+
       div {
          display: block;
          padding: 0.5rem 0.9rem;
@@ -101,14 +146,15 @@
 
    .latest-birthdays {
       h3 {
-         margin: 2rem 3rem;
+         margin: 1rem 3rem;
          span {
             color: $primary-color;
          }
       }
 
       .birthdays {
-         .birthday {
+         .birthday,
+         .birthday-active {
             background-color: $dark-color;
             display: flex;
             align-items: center;
@@ -116,6 +162,7 @@
             text-align: center;
             margin: 1rem 0;
             cursor: pointer;
+            position: relative;
 
             .img {
                margin-left: 1rem;
@@ -142,6 +189,46 @@
                padding: 1.1rem;
                flex: 1;
             }
+         }
+
+         .birthday-active:before,
+         .birthday-active:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background: linear-gradient(
+               45deg,
+               #fb0094,
+               #0000ff,
+               #00ff00,
+               #ffff00,
+               #fb0094,
+               #0000ff,
+               #00ff00,
+               #ff0000
+            );
+            background-size: 400%;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            z-index: -1;
+            animation: steam 20s linear infinite;
+         }
+
+         @keyframes steam {
+            0% {
+               background-position: 0 0;
+            }
+            50% {
+               background-position: 800% 0;
+            }
+            100% {
+               background-position: 0 0;
+            }
+         }
+
+         .birthday-active:after {
+            filter: blur(5px);
          }
       }
    }

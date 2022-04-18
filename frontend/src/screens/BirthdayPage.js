@@ -23,16 +23,29 @@ const BirthdayPage = () => {
    const { user } = userState;
 
    let year = birthday && birthday.birthday.slice(0, 4);
-   let month = birthday && birthday.birthday.slice(5, 7);
+   let month = birthday && birthday.birthday.slice(6, 7);
    let day = birthday && birthday.birthday.slice(8, 10);
 
-   const currentYear = new Date().getFullYear();
-   const currentMonth = new Date().getMonth();
+   const currentTime = new Date();
+
+   const currentYear = currentTime.getFullYear();
+   const currentMonth = currentTime.getMonth();
+
+   // get current year
+
+   // Getting the Birthday in Data Object
+   // WE subtract 1 from momnth ; Months start from 0 in Date Object
+   // Bithday Boolean
+   const isItBday =
+      currentTime.getDate() === Number(day) &&
+      currentTime.getMonth() === Number(month) - 1;
 
    let age = currentYear - year;
 
    if (currentMonth <= Number(month)) {
-      age = age - 1;
+      if (!isItBday) {
+         age = age - 1;
+      }
    }
 
    useEffect(() => {
@@ -68,13 +81,13 @@ const BirthdayPage = () => {
                   <div className="birthday-page">
                      <div className="img">
                         <img src={birthday.imageStr} alt={birthday.firstName} />
-                        <div className="age">
+                        <div className={isItBday ? 'age-active' : 'age'}>
                            <h1>{age}</h1>
                         </div>
                      </div>
                      <div className="name">
                         <h2>
-                           {birthday.firstName} {birthday.lastName}
+                           {birthday.firstName} <span>{birthday.lastName}</span>
                         </h2>
                         <h4>
                            {day}/{month}/{year}
@@ -82,8 +95,8 @@ const BirthdayPage = () => {
                      </div>
                      <BirthdayPanel
                         name={birthday.firstName}
-                        day={day}
-                        month={month}
+                        day={Number(day)}
+                        month={Number(month)}
                      />
                      <div className="delete-btn">
                         <i

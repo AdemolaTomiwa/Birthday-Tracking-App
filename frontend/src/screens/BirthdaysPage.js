@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getBirthdays } from '../actions/birthdayActions';
-import { clearErrors } from '../actions/errorActions';
+// import { clearErrors } from '../actions/errorActions';
 import Birthday from '../components/Birthday';
 import Loader from '../components/Loader';
 

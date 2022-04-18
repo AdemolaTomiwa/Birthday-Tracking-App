@@ -30,6 +30,10 @@ const BirthdayPanel = ({ name, day, month }) => {
    const isItBday =
       currentTime.getDate() === day && currentTime.getMonth() === month - 1;
 
+   // console.log(currentTime.getMonth());
+
+   // console.log(isItBday);
+
    useEffect(() => {
       setInterval(() => {
          const countdown = () => {

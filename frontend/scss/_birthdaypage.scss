@@ -15,7 +15,8 @@
          border: 3px solid $primary-color;
       }
 
-      .age {
+      .age,
+      .age-active {
          background-color: $dark-color;
          color: $primary-color;
          width: 8rem;
@@ -27,6 +28,48 @@
          font-weight: bold;
          margin-right: 8rem;
          margin-top: 1rem;
+         position: relative;
+      }
+
+      .age-active:before,
+      .age-active:after {
+         content: '';
+         position: absolute;
+         top: -2px;
+         left: -2px;
+         border-radius: 100%;
+         background: linear-gradient(
+            45deg,
+            #fb0094,
+            #0000ff,
+            #00ff00,
+            #ffff00,
+            #fb0094,
+            #0000ff,
+            #00ff00,
+            #ff0000
+         );
+         background-size: 400%;
+         width: calc(100% + 4px);
+         height: calc(100% + 4px);
+         z-index: -1;
+         animation: steam 20s linear infinite;
+      }
+
+      @keyframes steam {
+         0% {
+            background-position: 0 0;
+         }
+         50% {
+            background-position: 800% 0;
+         }
+         100% {
+            background-position: 0 0;
+         }
+      }
+
+      .age-active:after {
+         filter: blur(5px);
       }
    }
 
@@ -36,6 +79,10 @@
 
       h2 {
          text-transform: uppercase;
+
+         span {
+            color: $primary-color;
+         }
       }
 
       h4 {

@@ -11,12 +11,22 @@ const Birthday = ({ birthday }) => {
    let month = birthday.birthday.slice(5, 7);
    let day = birthday.birthday.slice(8, 10);
 
+   const currentTime = new Date();
+   // get current year
+
+   // Getting the Birthday in Data Object
+   // WE subtract 1 from momnth ; Months start from 0 in Date Object
+   // Bithday Boolean
+   const isItBday =
+      currentTime.getDate() === Number(day) &&
+      currentTime.getMonth() === Number(month) - 1;
+
    return (
       <>
          {birthdayLoading ? (
             <Loader />
          ) : (
-            <div className="birthday">
+            <div className={isItBday ? 'birthday-active' : 'birthday'}>
                <div className="img">
                   <Link to={`/birthday/${birthday._id}`}>
                      <img src={birthday.imageStr} alt={birthday.firstName} />
