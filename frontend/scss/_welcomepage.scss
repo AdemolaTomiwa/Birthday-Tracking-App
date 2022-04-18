@@ -22,4 +22,96 @@
          }
       }
    }
+
+   .current-birthday {
+      h3 {
+         margin-left: 2rem;
+         span {
+            color: $primary-color;
+         }
+      }
+
+      .birthdays {
+         .birthday {
+            display: none;
+         }
+
+         .birthday-active {
+            background-color: $dark-color;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            margin: 1rem 0;
+            cursor: pointer;
+            position: relative;
+
+            .img {
+               margin-left: 1rem;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               padding: 0.4rem 0;
+               img {
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 100%;
+               }
+            }
+
+            .name {
+               flex: 8;
+               span {
+                  color: $primary-color;
+               }
+            }
+
+            .date {
+               background-color: $primary-color;
+               padding: 1.1rem;
+               flex: 1;
+            }
+         }
+
+         .birthday-active:before,
+         .birthday-active:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background: linear-gradient(
+               45deg,
+               #fb0094,
+               #0000ff,
+               #00ff00,
+               #ffff00,
+               #fb0094,
+               #0000ff,
+               #00ff00,
+               #ff0000
+            );
+            background-size: 400%;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            z-index: -1;
+            animation: steam 20s linear infinite;
+         }
+
+         @keyframes steam {
+            0% {
+               background-position: 0 0;
+            }
+            50% {
+               background-position: 800% 0;
+            }
+            100% {
+               background-position: 0 0;
+            }
+         }
+
+         .birthday-active:after {
+            filter: blur(5px);
+         }
+      }
+   }
 }

@@ -130,6 +130,11 @@ form {
    display: flex;
    align-items: center;
    justify-content: center;
+   margin-top: 1rem;
+
+   span {
+      color: $white-color;
+   }
 }
 
 .loader {

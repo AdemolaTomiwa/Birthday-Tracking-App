@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../actions/errorActions';
+import { getBirthdays } from '../actions/birthdayActions';
+import CurrentBirthday from '../components/CurrentBirthday';
 
 const WelcomePage = () => {
    const dispatch = useDispatch();
@@ -34,8 +36,12 @@ const WelcomePage = () => {
    const userState = useSelector((state) => state.user);
    const { user } = userState;
 
+   const birthdayState = useSelector((state) => state.birthday);
+   const { birthdays } = birthdayState;
+
    useEffect(() => {
       dispatch(clearErrors());
+      dispatch(getBirthdays());
 
       if (!user) {
          navigate('/login');
@@ -63,6 +69,14 @@ const WelcomePage = () => {
                   Create Birthday Schedule
                </button>
             </Link>
+         </div>
+
+         <div className="current-birthday">
+            <div className="birthdays">
+               {birthdays.map((birthday) => (
+                  <CurrentBirthday birthday={birthday} />
+               ))}
+            </div>
          </div>
       </div>
    );
