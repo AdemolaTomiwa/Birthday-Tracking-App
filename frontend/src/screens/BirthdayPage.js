@@ -5,6 +5,7 @@ import { deleteBirthday, getBirthday } from '../actions/birthdayActions';
 import Loader from '../components/Loader';
 import BirthdayPanel from '../components/BirthdayPanel';
 import AlertModal from '../components/AlertModal';
+import Email from '../components/Email';
 
 const BirthdayPage = () => {
    const params = useParams();
@@ -106,10 +107,18 @@ const BirthdayPage = () => {
                      </div>
                      <AlertModal
                         open={openModal}
-                        body={'Are you sure?'}
+                        body={`Are you sure want to delete ${birthday.firstName} birthday schedule?`}
                         close={() => setOpenModal(false)}
                         accept={() => confirmDeleteHandler(birthday._id)}
                      />
+
+                     {/* {isItBday && (
+                        <Email
+                           birthdayDetails={birthday}
+                           age={age}
+                           user={user}
+                        />
+                     )} */}
                   </div>
                )}
             </>

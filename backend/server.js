@@ -5,6 +5,7 @@ import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
 import birthdayRoute from './routes/birthdayRoute.js';
 import uploadRoute from './routes/uploadRoute.js';
+import emailRoute from './routes/emailRoute.js';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/birthday', birthdayRoute);
 app.use('/api/uploads', uploadRoute);
+app.use('/api/email', emailRoute);
 
 // const PORT = process.env.PORT || 5000;
 const PORT = 3001;

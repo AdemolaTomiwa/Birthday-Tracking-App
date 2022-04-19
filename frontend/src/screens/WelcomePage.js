@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../actions/errorActions';
 import { getBirthdays } from '../actions/birthdayActions';
 import CurrentBirthday from '../components/CurrentBirthday';
+import Loader from '../components/Loader';
 
 const WelcomePage = () => {
    const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const WelcomePage = () => {
    const { user } = userState;
 
    const birthdayState = useSelector((state) => state.birthday);
-   const { birthdays } = birthdayState;
+   const { birthdays, birthdayLoading } = birthdayState;
 
    useEffect(() => {
       dispatch(clearErrors());
@@ -71,10 +72,12 @@ const WelcomePage = () => {
             </Link>
          </div>
 
+         {birthdayLoading && <Loader />}
+
          <div className="current-birthday">
             <div className="birthdays">
                {birthdays.map((birthday) => (
-                  <CurrentBirthday birthday={birthday} />
+                  <CurrentBirthday key={birthday._id} birthday={birthday} />
                ))}
             </div>
          </div>

@@ -27,9 +27,6 @@ const CurrentBirthday = ({ birthday }) => {
             <Loader />
          ) : (
             <>
-               <h3 className={!isItBday && 'birthday'}>
-                  Today's <span>Birthday</span>
-               </h3>
                <div className={isItBday ? 'birthday-active' : 'birthday'}>
                   <div className="img">
                      <Link to={`/birthday/${birthday._id}`}>
