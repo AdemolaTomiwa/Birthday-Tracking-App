@@ -35,7 +35,8 @@ router.get('/:id', auth, (req, res) => {
 // POST @/api/birthday/
 // Private
 router.post('/', auth, (req, res) => {
-   const { firstName, lastName, email, birthday, imageStr, user } = req.body;
+   const { firstName, lastName, email, birthday, imageStr, user, userObject } =
+      req.body;
 
    const newBirthday = new Birthday({
       firstName,
@@ -44,6 +45,7 @@ router.post('/', auth, (req, res) => {
       birthday,
       imageStr,
       user,
+      userObject,
    });
 
    newBirthday

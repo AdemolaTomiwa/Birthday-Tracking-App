@@ -75,6 +75,7 @@ const CreateBirthdayPage = () => {
          birthday,
          imageStr,
          user: user.id,
+         userObject: user,
       };
 
       if (!imageFilled || !firstName || !lastName || !birthday || !imageStr) {
