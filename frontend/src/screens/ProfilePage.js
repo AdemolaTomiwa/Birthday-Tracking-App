@@ -7,6 +7,7 @@ import { getLatestBirthday } from '../actions/birthdayActions';
 import Birthday from '../components/Birthday';
 import { logoutUser } from '../actions/userActions';
 import BirthdayPanel from '../components/BirthdayPanel';
+import Meta from '../components/Meta';
 
 const ProfilePage = () => {
    const navigate = useNavigate();
@@ -64,6 +65,7 @@ const ProfilePage = () => {
 
    return (
       <>
+         <Meta title="D-Day | Profile" />
          {userLoading ? (
             <Loader />
          ) : msg !== null ? (

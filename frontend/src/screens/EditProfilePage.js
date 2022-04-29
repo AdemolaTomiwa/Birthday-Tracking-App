@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import { clearErrors } from '../actions/errorActions';
 import { updateUserProfile } from '../actions/userActions';
+import Meta from '../components/Meta';
 
 const EditProfilePage = () => {
    const dispatch = useDispatch();
@@ -108,108 +109,114 @@ const EditProfilePage = () => {
    };
    return (
       user && (
-         <div className="edit-profile-page">
-            <div className="name-img">
-               <h3>
-                  Jimmy <span>Inyene</span>
-               </h3>
+         <>
+            <Meta title="D-Day | Edit Profile" />
+            <Link className="back" to="/profile">
+               Go Back
+            </Link>
+            <div className="edit-profile-page">
+               <div className="name-img">
+                  <h3>
+                     {user.firstName} <span>{user.lastName}</span>
+                  </h3>
 
-               {previewSource ? (
-                  <img src={previewSource} alt="chosen" className="img" />
-               ) : (
-                  <img src={user.imageStr} alt={user.firstName} />
-               )}
+                  {previewSource ? (
+                     <img src={previewSource} alt="chosen" className="img" />
+                  ) : (
+                     <img src={user.imageStr} alt={user.firstName} />
+                  )}
+               </div>
+
+               {userLoading && <Loader />}
+
+               <form onSubmit={onSubmit}>
+                  <div className="form-img">
+                     <div
+                        style={{ width: '100%', margin: '1rem 0' }}
+                        className="error-msg"
+                     >
+                        {errorMsg}
+                     </div>
+                     <div
+                        style={{ width: '100%', margin: '1rem 0' }}
+                        className="error-msg"
+                     >
+                        {msg}
+                     </div>
+                     <input
+                        type="file"
+                        onChange={handleFileInputChange}
+                        value={fileInputState}
+                        name="image"
+                        className="form-image"
+                     />
+                  </div>
+                  <div className="group">
+                     <div>
+                        <input
+                           type="text"
+                           autoComplete="off"
+                           name="firstName"
+                           placeholder="John"
+                           value={firstName}
+                           onChange={(e) => setFirstName(e.target.value)}
+                        />
+                        <i className="fas fa-address-book"></i>
+                     </div>
+                     <div>
+                        <input
+                           type="text"
+                           autoComplete="off"
+                           name="lastName"
+                           placeholder="Doe"
+                           value={lastName}
+                           onChange={(e) => setLastName(e.target.value)}
+                        />
+                        <i className="fas fa-address-book"></i>
+                     </div>
+                  </div>
+                  <div>
+                     <input
+                        type="email"
+                        autoComplete="off"
+                        name="email"
+                        placeholder="abc@gmail.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                     />
+                     <i className="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                     <input
+                        type="date"
+                        name="date"
+                        value={birthday}
+                        onChange={(e) => setBirthday(e.target.value)}
+                     />
+                     <i className="fas fa-calendar-alt"></i>
+                  </div>
+                  <div>
+                     <input
+                        type={showPassword ? 'text' : 'password'}
+                        name="password"
+                        autoComplete="off"
+                        placeholder="password12345"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                     />
+                     <i
+                        onClick={togglePassword}
+                        className={
+                           showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'
+                        }
+                     ></i>
+                  </div>
+                  <div>
+                     <button className="btn btn-primary">Update Account</button>
+                  </div>
+               </form>
             </div>
-
-            {userLoading && <Loader />}
-
-            <form onSubmit={onSubmit}>
-               <div className="form-img">
-                  <div
-                     style={{ width: '100%', margin: '1rem 0' }}
-                     className="error-msg"
-                  >
-                     {errorMsg}
-                  </div>
-                  <div
-                     style={{ width: '100%', margin: '1rem 0' }}
-                     className="error-msg"
-                  >
-                     {msg}
-                  </div>
-                  <input
-                     type="file"
-                     onChange={handleFileInputChange}
-                     value={fileInputState}
-                     name="image"
-                     className="form-image"
-                  />
-               </div>
-               <div className="group">
-                  <div>
-                     <input
-                        type="text"
-                        autoComplete="off"
-                        name="firstName"
-                        placeholder="John"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                     />
-                     <i className="fas fa-address-book"></i>
-                  </div>
-                  <div>
-                     <input
-                        type="text"
-                        autoComplete="off"
-                        name="lastName"
-                        placeholder="Doe"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                     />
-                     <i className="fas fa-address-book"></i>
-                  </div>
-               </div>
-               <div>
-                  <input
-                     type="email"
-                     autoComplete="off"
-                     name="email"
-                     placeholder="abc@gmail.com"
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <i className="fas fa-envelope"></i>
-               </div>
-               <div>
-                  <input
-                     type="date"
-                     name="date"
-                     value={birthday}
-                     onChange={(e) => setBirthday(e.target.value)}
-                  />
-                  <i className="fas fa-calendar-alt"></i>
-               </div>
-               <div>
-                  <input
-                     type={showPassword ? 'text' : 'password'}
-                     name="password"
-                     autoComplete="off"
-                     placeholder="password12345"
-                     value={password}
-                     onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <i
-                     onClick={togglePassword}
-                     className={
-                        showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'
-                     }
-                  ></i>
-               </div>
-               <div>
-                  <button className="btn btn-primary">Update Account</button>
-               </div>
-            </form>
-         </div>
+         </>
       )
    );
 };

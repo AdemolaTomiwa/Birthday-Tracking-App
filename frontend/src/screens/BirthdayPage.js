@@ -5,6 +5,7 @@ import { deleteBirthday, getBirthday } from '../actions/birthdayActions';
 import Loader from '../components/Loader';
 import BirthdayPanel from '../components/BirthdayPanel';
 import AlertModal from '../components/AlertModal';
+import Meta from '../components/Meta';
 
 const BirthdayPage = () => {
    const params = useParams();
@@ -68,6 +69,7 @@ const BirthdayPage = () => {
 
    return (
       <>
+         <Meta title="D-Day" />
          <Link className="back" to="/birthdays">
             Go Back
          </Link>

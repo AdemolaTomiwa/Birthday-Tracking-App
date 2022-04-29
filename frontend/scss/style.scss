@@ -98,56 +98,6 @@ header {
          color: $grey-color;
       }
    }
-
-   &-container {
-      display: none;
-   }
-
-   &-container-show {
-      background-color: $white-color;
-      color: $black-color;
-      position: fixed;
-      bottom: 10%;
-      right: 0%;
-      width: 300px;
-      transform: translate(0%, -10%);
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 10px;
-      overflow: hidden;
-
-      a {
-         color: $dark-color;
-         width: 100%;
-      }
-
-      div {
-         padding: 1rem;
-         cursor: pointer;
-         width: 100%;
-         @include easeOut();
-
-         &:hover {
-            background-color: $grey-color;
-         }
-      }
-
-      .name {
-         color: $primary-color;
-         font-weight: bold;
-         border-top: 2px solid $grey-color;
-
-         i {
-            margin-right: 1rem;
-         }
-
-         &:hover {
-            background-color: $white-color;
-         }
-      }
-   }
 }
 
 footer {
@@ -156,3 +106,5 @@ footer {
    justify-content: center;
    margin: 2rem 0 1rem 0;
 }
+
+@import 'mobile';

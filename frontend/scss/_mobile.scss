@@ -1,0 +1,459 @@
+@media (max-width: 880px) {
+   // Text
+   h1 {
+      font-size: 4rem;
+   }
+
+   h2 {
+      font-size: 2.5rem;
+   }
+
+   h3 {
+      font-size: 1.7rem;
+   }
+
+   h4 {
+      font-size: 1.3rem;
+   }
+
+   h5 {
+      font-size: 0.9rem;
+   }
+
+   .container {
+      width: 87%;
+   }
+
+   header {
+      padding: 0.8rem 2.5rem;
+   }
+
+   .welcome-page {
+      .buttons {
+         margin: 3rem 0rem;
+
+         a {
+            .btn {
+               width: 40%;
+               margin-right: 2rem;
+            }
+         }
+      }
+   }
+
+   .birthday-page {
+      .img {
+         padding: 0 5rem;
+
+         img {
+            width: 230px;
+            height: 230px;
+         }
+
+         .age,
+         .age-active {
+            width: 7rem;
+            height: 7rem;
+            margin-right: 0rem;
+
+            h1 {
+               font-size: 3.5rem;
+            }
+         }
+      }
+   }
+
+   //    Birthday panel
+   .countdown-box {
+      font-size: 30px;
+      width: 130px;
+      height: 130px;
+   }
+
+   .legend {
+      font-size: 22px;
+   }
+
+   .wish-message {
+      font-size: 45px;
+   }
+
+   .create-birthday-page {
+      form {
+         div {
+            width: 60%;
+         }
+      }
+   }
+
+   .profile-page {
+      .img {
+         .img-name {
+            width: 40%;
+
+            img {
+               width: 230px;
+               height: 230px;
+            }
+
+            .name {
+               h5 {
+                  span {
+                     margin: 0 0.5rem;
+                  }
+               }
+            }
+         }
+
+         .age,
+         .age-active {
+            width: 7rem;
+            height: 7rem;
+            margin-right: 0rem;
+
+            h1 {
+               font-size: 3.5rem;
+            }
+         }
+      }
+
+      .boxes {
+         width: 65%;
+
+         div {
+            font-size: 0.9rem;
+         }
+      }
+   }
+
+   .alert-modal {
+      .content {
+         width: 70%;
+      }
+   }
+
+   .login-page {
+      form {
+         div {
+            width: 60%;
+         }
+      }
+   }
+
+   .register-page {
+      form {
+         div {
+            width: 60%;
+         }
+      }
+   }
+
+   .home-page {
+      .buttons {
+         a {
+            .btn {
+               width: 30%;
+            }
+         }
+      }
+   }
+
+   .edit-profile-page {
+      .name-img {
+         width: 60%;
+
+         img {
+            width: 230px;
+            height: 230px;
+         }
+      }
+
+      form {
+         div {
+            width: 60%;
+         }
+      }
+   }
+}
+
+@media (max-width: 680px) {
+   // Text
+   h1 {
+      font-size: 3.5rem;
+   }
+
+   h2 {
+      font-size: 2rem;
+   }
+
+   h3 {
+      font-size: 1.4rem;
+   }
+
+   h4 {
+      font-size: 1rem;
+   }
+
+   h5 {
+      font-size: 0.7rem;
+   }
+
+   .btn {
+      font-size: 0.8rem;
+   }
+
+   .container {
+      width: 92%;
+   }
+
+   header {
+      padding: 0.8rem 2rem;
+   }
+
+   .welcome-page {
+      h4 {
+         font-weight: lighter;
+         margin-left: 2rem;
+      }
+
+      .buttons {
+         a {
+            .btn {
+               width: 40%;
+               margin-right: 2rem;
+            }
+         }
+      }
+   }
+
+   .birthdays-page {
+      .birthdays {
+         .birthday,
+         .birthday-active {
+            .img {
+               padding: 0.5rem 1rem 0 1rem;
+
+               img {
+                  width: 50px;
+                  height: 50px;
+               }
+            }
+
+            .date {
+               flex: 2;
+            }
+         }
+      }
+   }
+
+   .alert-modal {
+      .content {
+         width: 80%;
+      }
+   }
+
+   .birthday-page {
+      .img {
+         padding: 0 2rem;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         flex-direction: column;
+
+         img {
+            width: 200px;
+            height: 200px;
+         }
+
+         .age,
+         .age-active {
+            width: 6rem;
+            height: 6rem;
+            margin-right: 0rem;
+            margin-top: 2rem;
+
+            h1 {
+               font-size: 3rem;
+            }
+         }
+      }
+
+      .name {
+         text-align: center;
+      }
+   }
+
+   .back {
+      display: inline-block;
+      margin: 1rem;
+      font-weight: bold;
+      color: $grey-color;
+      @include easeOut();
+
+      &:hover {
+         color: $white-color;
+      }
+   }
+
+   .profile-page {
+      .img {
+         flex-direction: column;
+         .img-name {
+            width: 100%;
+
+            img {
+               width: 200px;
+               height: 200px;
+            }
+         }
+
+         .age,
+         .age-active {
+            width: 6rem;
+            height: 6rem;
+            margin-right: 0rem;
+
+            h1 {
+               font-size: 3rem;
+            }
+         }
+      }
+
+      .boxes {
+         width: 100%;
+      }
+
+      .latest-birthdays {
+         h3 {
+            margin: 1rem 3rem;
+            span {
+               color: $primary-color;
+            }
+         }
+
+         .birthdays {
+            .birthday,
+            .birthday-active {
+               .img {
+                  padding: 1rem 1rem 0 1rem;
+
+                  img {
+                     width: 50px;
+                     height: 50px;
+                  }
+               }
+
+               .date {
+                  flex: 2;
+               }
+            }
+         }
+      }
+   }
+
+   .edit-profile-page {
+      .name-img {
+         width: 100%;
+
+         img {
+            width: 200px;
+            height: 200px;
+         }
+      }
+
+      form {
+         div {
+            width: 100%;
+         }
+      }
+   }
+
+   .create-birthday-page {
+      h3 {
+         text-align: center;
+      }
+
+      form {
+         div {
+            width: 100%;
+         }
+      }
+   }
+
+   .login-page {
+      form {
+         div {
+            width: 100%;
+         }
+      }
+   }
+
+   .register-page {
+      form {
+         div {
+            width: 100%;
+         }
+      }
+   }
+
+   .home-page {
+      .buttons {
+         a {
+            .btn {
+               width: 40%;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 480px) {
+   // Text
+   h1 {
+      font-size: 3rem;
+   }
+
+   h2 {
+      font-size: 1.7rem;
+   }
+
+   h3 {
+      font-size: 1.2rem;
+   }
+
+   h4 {
+      font-size: 0.9rem;
+   }
+
+   h5 {
+      font-size: 0.7rem;
+   }
+
+   .alert-modal {
+      .content {
+         width: 90%;
+      }
+   }
+
+   .welcome-page {
+      .buttons {
+         a {
+            .btn {
+               width: 100%;
+               margin: 1rem 0;
+            }
+         }
+      }
+   }
+
+   .home-page {
+      .buttons {
+         a {
+            .btn {
+               width: 100%;
+               margin: 1rem 0;
+            }
+         }
+      }
+   }
+}

@@ -5,6 +5,7 @@ import { clearErrors } from '../actions/errorActions';
 import { getBirthdays } from '../actions/birthdayActions';
 import CurrentBirthday from '../components/CurrentBirthday';
 import Loader from '../components/Loader';
+import Meta from '../components/Meta';
 
 const WelcomePage = () => {
    const dispatch = useDispatch();
@@ -40,6 +41,9 @@ const WelcomePage = () => {
    const birthdayState = useSelector((state) => state.birthday);
    const { birthdays, birthdayLoading } = birthdayState;
 
+   const errorState = useSelector((state) => state.error);
+   const { msg } = errorState;
+
    useEffect(() => {
       dispatch(clearErrors());
       dispatch(getBirthdays());
@@ -52,36 +56,43 @@ const WelcomePage = () => {
    }, [dispatch, day, navigate, user]);
 
    return (
-      <div className="welcome-page">
-         {user && (
-            <h1>
-               Hi {user.firstName} <i className="fas fa-smile"></i>
-            </h1>
-         )}
+      <>
+         <Meta title="D-Day" />
+         <div className="welcome-page">
+            {user && (
+               <h1>
+                  Hi {user.firstName} <i className="fas fa-smile"></i>
+               </h1>
+            )}
 
-         <h4>Today is {day}</h4>
+            <h4>Today is {day}</h4>
 
-         <div className="buttons">
-            <Link to="/birthdays">
-               <button className="btn btn-primary">Upcoming Birthdays</button>
-            </Link>
-            <Link to="/create-birthday">
-               <button className="btn btn-primary">
-                  Create Birthday Schedule
-               </button>
-            </Link>
-         </div>
+            <div className="buttons">
+               <Link to="/birthdays">
+                  <button className="btn btn-primary">
+                     Upcoming Birthdays
+                  </button>
+               </Link>
+               <Link to="/create-birthday">
+                  <button className="btn btn-primary">
+                     Create Birthday Schedule
+                  </button>
+               </Link>
+            </div>
 
-         {birthdayLoading && <Loader />}
+            {birthdayLoading && <Loader />}
 
-         <div className="current-birthday">
-            <div className="birthdays">
-               {birthdays.map((birthday) => (
-                  <CurrentBirthday key={birthday._id} birthday={birthday} />
-               ))}
+            <div className="error-msg">{msg}</div>
+
+            <div className="current-birthday">
+               <div className="birthdays">
+                  {birthdays.map((birthday) => (
+                     <CurrentBirthday key={birthday._id} birthday={birthday} />
+                  ))}
+               </div>
             </div>
          </div>
-      </div>
+      </>
    );
 };
 

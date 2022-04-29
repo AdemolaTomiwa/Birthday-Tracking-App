@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../actions/userActions';
 import Loader from '../components/Loader';
+import Meta from '../components/Meta';
 import { clearErrors } from '../actions/errorActions';
 import axios from 'axios';
 
@@ -83,112 +84,117 @@ const RegisterPage = () => {
    };
 
    return (
-      <div className="register-page">
-         <h5>Start for Free</h5>
-         <h3>
-            Create an account <span>.</span>
-         </h3>
-         <p>
-            Already a Member?{' '}
-            <Link to="/login">
-               <span>Log In</span>
-            </Link>
-         </p>
+      <>
+         <Meta title="D-Day | Register" />
+         <div className="register-page">
+            <h5>Start for Free</h5>
+            <h3>
+               Create an account <span>.</span>
+            </h3>
+            <p>
+               Already a Member?{' '}
+               <Link to="/login">
+                  <span>Log In</span>
+               </Link>
+            </p>
 
-         {userLoading && <Loader />}
+            {userLoading && <Loader />}
 
-         <form onSubmit={onSubmit}>
-            <div className="form-img">
-               <div className="img-container">
-                  {previewSource ? (
-                     <img src={previewSource} alt="chosen" className="img" />
-                  ) : (
-                     <div className="img">
-                        <p>Take Photo</p>
-                     </div>
-                  )}
-               </div>
-               <div
-                  style={{ width: '100%', margin: '1rem 0' }}
-                  className="error-msg"
-               >
-                  {msg}
-               </div>
-               {/* <div style={{ width: '100%' }} className="error-msg">
+            <form onSubmit={onSubmit}>
+               <div className="form-img">
+                  <div className="img-container">
+                     {previewSource ? (
+                        <img src={previewSource} alt="chosen" className="img" />
+                     ) : (
+                        <div className="img">
+                           <p>Take Photo</p>
+                        </div>
+                     )}
+                  </div>
+                  <div
+                     style={{ width: '100%', margin: '1rem 0' }}
+                     className="error-msg"
+                  >
+                     {msg}
+                  </div>
+                  {/* <div style={{ width: '100%' }} className="error-msg">
                   {errorMsg}
                </div> */}
-               <input
-                  type="file"
-                  onChange={handleFileInputChange}
-                  value={fileInputState}
-                  name="image"
-                  className="form-image"
-               />
-            </div>
-            {/* <div className="error-msg">{msg}</div> */}
-            <div className="group">
-               <div>
                   <input
-                     type="text"
-                     autoComplete="off"
-                     name="firstName"
-                     placeholder="John"
-                     value={firstName}
-                     onChange={(e) => setFirstName(e.target.value)}
+                     type="file"
+                     onChange={handleFileInputChange}
+                     value={fileInputState}
+                     name="image"
+                     className="form-image"
                   />
-                  <i className="fas fa-address-book"></i>
+               </div>
+               {/* <div className="error-msg">{msg}</div> */}
+               <div className="group">
+                  <div>
+                     <input
+                        type="text"
+                        autoComplete="off"
+                        name="firstName"
+                        placeholder="John"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                     />
+                     <i className="fas fa-address-book"></i>
+                  </div>
+                  <div>
+                     <input
+                        type="text"
+                        autoComplete="off"
+                        name="lastName"
+                        placeholder="Doe"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                     />
+                     <i className="fas fa-address-book"></i>
+                  </div>
                </div>
                <div>
                   <input
-                     type="text"
+                     type="email"
                      autoComplete="off"
-                     name="lastName"
-                     placeholder="Doe"
-                     value={lastName}
-                     onChange={(e) => setLastName(e.target.value)}
+                     name="email"
+                     placeholder="abc@gmail.com"
+                     value={email}
+                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <i className="fas fa-address-book"></i>
+                  <i className="fas fa-envelope"></i>
                </div>
-            </div>
-            <div>
-               <input
-                  type="email"
-                  autoComplete="off"
-                  name="email"
-                  placeholder="abc@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-               />
-               <i className="fas fa-envelope"></i>
-            </div>
-            <div>
-               <input
-                  type="date"
-                  name="date"
-                  value={birthday}
-                  onChange={(e) => setBirthday(e.target.value)}
-               />
-               <i className="fas fa-calendar-alt"></i>
-            </div>
-            <div>
-               <input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  autoComplete="off"
-                  placeholder="password12345"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-               />
-               <i
-                  onClick={togglePassword}
-                  className={showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'}
-               ></i>
-            </div>
-            <div>
-               <button className="btn btn-primary">Create Account</button>
-            </div>
-         </form>
-      </div>
+               <div>
+                  <input
+                     type="date"
+                     name="date"
+                     value={birthday}
+                     onChange={(e) => setBirthday(e.target.value)}
+                  />
+                  <i className="fas fa-calendar-alt"></i>
+               </div>
+               <div>
+                  <input
+                     type={showPassword ? 'text' : 'password'}
+                     name="password"
+                     autoComplete="off"
+                     placeholder="password12345"
+                     value={password}
+                     onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <i
+                     onClick={togglePassword}
+                     className={
+                        showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'
+                     }
+                  ></i>
+               </div>
+               <div>
+                  <button className="btn btn-primary">Create Account</button>
+               </div>
+            </form>
+         </div>
+      </>
    );
 };
 
